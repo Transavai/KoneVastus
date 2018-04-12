@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Kone Vastus</string>
+    <string name="kirjuta">Kirjuta siia tekst, mida loetakse telefoni poolt</string>
+    <string name="kõneldav">Sinu kõneldav tekst ilmub siia</string>
+</resources>
