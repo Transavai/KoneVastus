@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void mikriklõps (View view){Kasutajakõneleb();}
+    public void mic (View view){Kasutajakõneleb();}
 
     private void Kasutajakõneleb(){
         Intent intent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);

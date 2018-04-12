@@ -36,7 +36,8 @@
         android:layout_below="@+id/kõnetekst"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="72dp"
-        android:src="@drawable/mic" />
+        android:src="@drawable/mic"
+        android:onClick="mic"/>
 
     <Button
         android:id="@+id/räägi"
