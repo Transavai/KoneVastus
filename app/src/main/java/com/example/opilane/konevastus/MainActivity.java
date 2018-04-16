@@ -1,30 +1,33 @@
 package com.example.opilane.konevastus;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.speech.RecognizerIntent;
+import android.annotation.SuppressLint;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeechService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.util.Locale;
+
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView konetekst;
-    ImageButton mic;
-    Button räägi, puhasta, stop;
-    String tekst;
-    int tulemus;
-    TextToSpeech kõneks;
+    Text Break;
 
-    private EditText kirjuta;
+    TextToSpeech toSpeech;
+    int result;
+    EditText editText;
+    String text;
+
+
+
+
 
 
     @Override
@@ -32,47 +35,55 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        konetekst= findViewById(R.id.kõnetekst);
-        mic = findViewById(R.id.mic);
-        räägi= findViewById(R.id.räägi);
-        puhasta = findViewById(R.id. puhasta);
-        stop = findViewById(R.id.stop);
-        kirjuta = findViewById(R.id.kirjutatekst);
-        kõneks = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+        editText= findViewById(R.id.editText);
+        toSpeech=new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-               if(status == TextToSpeech.SUCCESS)
-               {tulemus = kõneks.setLanguage(Locale.getDefault());
+                if (status==TextToSpeech.SUCCESS)
+                {
+                    result=toSpeech.setLanguage(Locale.ENGLISH);
 
-               }
-               else
-               {
-                   Toast.makeText(getApplicationContext(), "Sellised vahendi tööd ei toeta sinu seade", Toast.LENGTH_SHORT).show();
+                }else
+                {
+                    Toast.makeText(getApplicationContext(),"Feature not supported in your device", Toast.LENGTH_SHORT).show();
+                }
 
-               }
-
-
-
-
-        }});
-
-
-
-
-    }
-    public void mic (View view){Kasutajakõneleb();}
-
-    private void Kasutajakõneleb(){
-        Intent intent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Ütle midagi");
-        try{startActivityForResult(intent, 100);}
-        catch (ActivityNotFoundException a){Toast.makeText(getApplicationContext(), "Sellised vahendi tööd ei toeta sinu seade", Toast.LENGTH_SHORT). show();}
+            }
+        });
     }
 
-    public void onActivityResult(int request)
 
+    public void  TTS(View view)
+    {
+        switch (view.getId())
+        {
+            case R.id.räägi:
+                if (result== TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                {
+                    Toast.makeText(getApplicationContext(),"Feature not supported in your device", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    text = editText.getText().toString();
+                    toSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+                }
+                break;
+            case R.id.stop:
+                if (toSpeech!=null)
+                {
+                    toSpeech.stop();
+                }
+                break;
+        }
+    }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (toSpeech!=null)
+        {
+            toSpeech.stop();
+            toSpeech.shutdown();
+        }
+    }
 }

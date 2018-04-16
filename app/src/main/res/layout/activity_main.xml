@@ -8,62 +8,33 @@
     android:layout_gravity="center"
     tools:context="com.example.opilane.konevastus.MainActivity">
 
-    <TextView
-        android:id="@+id/kõnetekst"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="54dp"
-        android:gravity="center_horizontal"
-        android:hint="@string/kõneldav"
-        android:textSize="20dp" />
-
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/räägi"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="@string/kirjuta"
-        android:id="@+id/kirjutatekst" />
-
-    <ImageButton
-        android:id="@+id/mic"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/kõnetekst"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:src="@drawable/mic"
-        android:onClick="mic"/>
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="80dp" />
 
     <Button
         android:id="@+id/räägi"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/stop"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Räägi"/>
-
-    <Button
-        android:id="@+id/puhasta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Puhasta" />
+        android:layout_alignBaseline="@+id/stop"
+        android:layout_alignBottom="@+id/stop"
+        android:layout_alignEnd="@+id/editText"
+        android:layout_alignRight="@+id/editText"
+        android:onClick="TTS"
+        android:text="SPEAK " />
 
     <Button
         android:id="@+id/stop"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/puhasta"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Stop" />
+        android:text="Stop"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="77dp"
+        android:onClick="TTS"/>
 
 </RelativeLayout>
