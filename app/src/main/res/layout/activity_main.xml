@@ -9,32 +9,58 @@
     tools:context="com.example.opilane.konevastus.MainActivity">
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:id="@+id/kõneks"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="80dp" />
+        android:layout_above="@+id/räägi"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="@string/kirjuta"/>
 
     <Button
         android:id="@+id/räägi"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/stop"
-        android:layout_alignBottom="@+id/stop"
-        android:layout_alignEnd="@+id/editText"
-        android:layout_alignRight="@+id/editText"
+        android:layout_above="@+id/puhasta"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:onClick="TTS"
         android:text="SPEAK " />
 
+
     <Button
-        android:id="@+id/stop"
+        android:id="@+id/puhasta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:text="Clear" />
+
+    <TextView
+        android:id="@+id/kõneldav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="43dp"
+        android:hint="@string/kõneldav" />
+
+
+
+    <ImageButton
+        android:id="@+id/mic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop"
-        android:layout_below="@+id/editText"
-        android:layout_marginTop="77dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginLeft="139dp"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="103dp"
+        app:srcCompat="@drawable/mic"
         android:onClick="TTS"/>
 
 </RelativeLayout>
